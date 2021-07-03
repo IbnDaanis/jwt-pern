@@ -37,6 +37,15 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body
+
+    const userExists = (await pool.query('SELECT * FROM users WHERE user_email = $1', [email]))
+      .rows[0]
+
+    if (!userExists) return res.status(401).json('Email or password is incorrect.')
+
+    const validPassword = await bcrypt.compare(password, userExists.user_password)
+
+    if (!validPassword) return res.status(401).json('Email or password is incorrect.')
   } catch (error) {
     console.error(error.message)
     res.send(error.message)
