@@ -4,6 +4,5 @@ config()
 
 export const jwtGenerator = user_id => {
   const payload = { user: user_id }
-
-  jwt.sign(payload, process.env.jwtsecret, { expiresIn: '1hr' })
+  return jwt.sign(payload, process.env.jwtsecret, { expiresIn: '1hr' })
 }
