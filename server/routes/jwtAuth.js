@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import { pool } from '../database/database.js'
 import bcrypt from 'bcrypt'
+import { jwtGenerator } from '../utils/jwtGenerator.js'
 
 const router = Router()
 
