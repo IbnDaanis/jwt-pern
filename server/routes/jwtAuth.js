@@ -34,4 +34,13 @@ router.post('/register', async (req, res) => {
   }
 })
 
+router.post('/login', async (req, res) => {
+  try {
+    const { email, password } = req.body
+  } catch (error) {
+    console.error(error.message)
+    res.send(error.message)
+  }
+})
+
 export default router
