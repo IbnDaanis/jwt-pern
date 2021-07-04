@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken'
 
-const authorization = async (req, res, next) => {
+export const authorization = async (req, res, next) => {
   try {
     const jwtToken = req.header('token')
 

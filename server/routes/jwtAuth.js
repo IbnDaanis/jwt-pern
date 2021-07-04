@@ -2,10 +2,12 @@ import { Router } from 'express'
 import { pool } from '../database/database.js'
 import bcrypt from 'bcrypt'
 import { jwtGenerator } from '../utils/jwtGenerator.js'
+import { validateInfo } from '../middleware/validateInfo.js'
+import { authorization } from '../middleware/authorization.js'
 
 const router = Router()
 
-router.post('/register', async (req, res) => {
+router.post('/register', validateInfo, async (req, res) => {
   try {
     const { name, email, password } = req.body
 
@@ -34,7 +36,7 @@ router.post('/register', async (req, res) => {
   }
 })
 
-router.post('/login', async (req, res) => {
+router.post('/login', validateInfo, async (req, res) => {
   try {
     const { email, password } = req.body
 
