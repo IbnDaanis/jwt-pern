@@ -55,4 +55,13 @@ router.post('/login', validateInfo, async (req, res) => {
   }
 })
 
+router.get('/verify', authorization, async (req, res) => {
+  try {
+    res.json(req.user)
+  } catch (error) {
+    console.error(error.message)
+    res.send(error.message)
+  }
+})
+
 export default router
