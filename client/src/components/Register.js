@@ -7,6 +7,8 @@ export const Register = ({ setIsAuthenticated }) => {
     password: ''
   })
 
+  const { email, name, password } = inputs
+
   const handleSubmit = async event => {
     event.preventDefault()
     console.log(inputs)
@@ -20,6 +22,7 @@ export const Register = ({ setIsAuthenticated }) => {
           type='email'
           placeholder='Enter Email'
           className='form-control my-3'
+          value={email}
           onChange={({ target }) => setInputs(prev => ({ ...prev, email: target.value }))}
           required
         />
@@ -27,6 +30,7 @@ export const Register = ({ setIsAuthenticated }) => {
           type='text'
           placeholder='Enter Name'
           className='form-control my-3'
+          value={name}
           onChange={({ target }) => setInputs(prev => ({ ...prev, name: target.value }))}
           required
         />
@@ -34,6 +38,7 @@ export const Register = ({ setIsAuthenticated }) => {
           type='password'
           placeholder='Enter Password'
           className='form-control my-3'
+          value={password}
           onChange={({ target }) => setInputs(prev => ({ ...prev, password: target.value }))}
           required
         />
