@@ -11,7 +11,18 @@ export const Register = ({ setIsAuthenticated }) => {
 
   const handleSubmit = async event => {
     event.preventDefault()
-    console.log(inputs)
+    const body = { email, name, password }
+    try {
+      const response = await fetch('http://localhost:5000/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      })
+      const data = await response.json()
+      console.log(data)
+    } catch (error) {
+      console.error(error.message)
+    }
   }
 
   return (
