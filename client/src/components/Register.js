@@ -19,7 +19,9 @@ export const Register = ({ setIsAuthenticated }) => {
         body: JSON.stringify(body)
       })
       const data = await response.json()
-      console.log(data)
+
+      localStorage.setItem('token', JSON.stringify(data.token))
+      setIsAuthenticated(true)
     } catch (error) {
       console.error(error.message)
     }
