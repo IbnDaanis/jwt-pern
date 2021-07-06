@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 export const Register = ({ setIsAuthenticated }) => {
   const [inputs, setInputs] = useState({
@@ -59,6 +60,9 @@ export const Register = ({ setIsAuthenticated }) => {
           Sign Up
         </button>
       </form>
+      <Link className='text-center my-3 d-block' to='/login'>
+        Login
+      </Link>
     </div>
   )
 }
