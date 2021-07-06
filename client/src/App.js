@@ -1,11 +1,30 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import { Dashboard } from './components/Dashboard'
 import { Login } from './components/Login'
 import { Register } from './components/Register'
 
 export const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(JSON.parse(localStorage.getItem('token')))
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const token = JSON.parse(localStorage.getItem('token'))
+
+  async function isAuth() {
+    try {
+      const response = await fetch('http://localhost:5000/auth/verify', {
+        method: 'GET',
+        headers: { token }
+      })
+      const data = await response.json()
+
+      data ? setIsAuthenticated(true) : setIsAuthenticated(false)
+    } catch (error) {
+      console.error(error.message)
+    }
+  }
+
+  useEffect(() => {
+    if (token) return isAuth()
+  }, [])
 
   return (
     <Router>
