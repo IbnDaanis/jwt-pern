@@ -6,6 +6,7 @@ export const Login = ({ setIsAuthenticated }) => {
     email: '',
     password: ''
   })
+  const [errorMessage, setErrorMessage] = useState(null)
 
   const { email, password } = inputs
 
@@ -21,7 +22,12 @@ export const Login = ({ setIsAuthenticated }) => {
       const data = await response.json()
 
       localStorage.setItem('token', JSON.stringify(data.token))
-      setIsAuthenticated(true)
+      if (data.token) {
+        setErrorMessage(null)
+        return setIsAuthenticated(true)
+      }
+      setErrorMessage(data)
+      throw new Error(data)
     } catch (error) {
       console.error(error.message)
     }
@@ -30,6 +36,7 @@ export const Login = ({ setIsAuthenticated }) => {
   return (
     <div>
       <h1 className='text-center my-5'>Login</h1>
+      <p className='text-center text-danger'>{errorMessage}</p>
       <form onSubmit={handleSubmit} className='w-50 text-center m-auto'>
         <input
           type='email'
