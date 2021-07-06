@@ -5,9 +5,7 @@ import { Login } from './components/Login'
 import { Register } from './components/Register'
 
 export const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(
-    JSON.parse(localStorage.getItem('token')).length
-  )
+  const [isAuthenticated, setIsAuthenticated] = useState(JSON.parse(localStorage.getItem('token')))
 
   return (
     <Router>

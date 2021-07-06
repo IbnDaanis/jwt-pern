@@ -29,8 +29,14 @@ export const Dashboard = ({ setIsAuthenticated }) => {
       <h1>Dashboard</h1>
       <div>
         {name && <h2>Welcome back {name}</h2>}
-
-        <button className='btn'>Logout</button>
+        <button
+          className='btn btn-primary my-5'
+          onClick={() => {
+            localStorage.removeItem('token')
+            setIsAuthenticated(false)
+          }}>
+          Logout
+        </button>
       </div>
     </div>
   )
