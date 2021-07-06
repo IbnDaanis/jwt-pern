@@ -7,9 +7,28 @@ export const Login = ({ setIsAuthenticated }) => {
   })
 
   const { email, password } = inputs
+
+  const handleSubmit = async event => {
+    event.preventDefault()
+    const body = { email, password }
+    try {
+      const response = await fetch('http://localhost:5000/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      })
+      const data = await response.json()
+
+      localStorage.setItem('token', JSON.stringify(data.token))
+      setIsAuthenticated(true)
+    } catch (error) {
+      console.error(error.message)
+    }
+  }
+
   return (
     <div>
-      <h1>Login</h1>
+      <h1 className='text-center my-5'>Login</h1>
       <form onSubmit={handleSubmit} className='w-50 text-center m-auto'>
         <input
           type='email'
