@@ -24,6 +24,7 @@ export const Register = ({ setIsAuthenticated }) => {
 
       if (data.token) {
         localStorage.setItem('token', JSON.stringify(data.token))
+        toast.success('Account created!')
         return setIsAuthenticated(true)
       }
 
