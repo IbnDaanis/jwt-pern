@@ -23,6 +23,7 @@ export const Login = ({ setIsAuthenticated }) => {
 
       if (data.token) {
         localStorage.setItem('token', JSON.stringify(data.token))
+        toast.success('Logged in!')
         return setIsAuthenticated(true)
       }
 
