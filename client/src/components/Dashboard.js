@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { toast } from 'react-toastify'
 
 export const Dashboard = ({ setIsAuthenticated }) => {
   const [name, setName] = useState('')
@@ -32,6 +33,7 @@ export const Dashboard = ({ setIsAuthenticated }) => {
           className='btn btn-primary my-5'
           onClick={() => {
             localStorage.removeItem('token')
+            toast.success('Logged out')
             setIsAuthenticated(false)
           }}>
           Logout
