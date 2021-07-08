@@ -1,6 +1,5 @@
 import express from 'express'
 import cors from 'cors'
-import { pool } from './database/database.js'
 import jwtAuth from './routes/jwtAuth.js'
 import dashboard from './routes/dashboard.js'
 
