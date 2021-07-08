@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 export const Register = ({ setIsAuthenticated }) => {
   const [inputs, setInputs] = useState({
@@ -21,8 +22,12 @@ export const Register = ({ setIsAuthenticated }) => {
       })
       const data = await response.json()
 
-      localStorage.setItem('token', JSON.stringify(data.token))
-      setIsAuthenticated(true)
+      if (data.token) {
+        localStorage.setItem('token', JSON.stringify(data.token))
+        return setIsAuthenticated(true)
+      }
+
+      toast.error(data)
     } catch (error) {
       console.error(error.message)
     }
