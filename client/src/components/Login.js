@@ -26,6 +26,7 @@ export const Login = ({ setIsAuthenticated }) => {
         return setIsAuthenticated(true)
       }
 
+      toast.error(data)
       throw new Error(data)
     } catch (error) {
       console.error(error.message)
