@@ -20,3 +20,4 @@ INSERT INTO users (user_name, user_email, user_password) values ('john', 'john@e
 INSERT INTO users (user_name, user_email, user_password) values ('jimmy', 'jimmy@example.com', 'password');
 
 INSERT INTO todos (user_id, description ) values ('3cc88b1e-62af-455d-b02c-aef54c5467d9', 'First todo');
+INSERT INTO todos (user_id, description ) values ('88d0ffed-3432-415a-9deb-225094b80b7a', 'Jimmy''s first todo');
