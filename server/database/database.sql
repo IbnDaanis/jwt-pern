@@ -1,11 +1,17 @@
-CREATE DATABASE jwtpern;
+CREATE DATABASE authtodolist;
 
 CREATE TABLE users(
-  user_id uuid PRIMARY KEY DEFAULT uuid_generate_v4(), -- CREATE EXTENSION "uuid-ossp";
+  user_id uuid DEFAULT uuid_generate_v4(), -- CREATE EXTENSION "uuid-ossp";
   user_name VARCHAR(255) NOT NULL,
-  user_email VARCHAR(255) NOT NULL,
-  user_password VARCHAR(255) NOT NULL
+  user_email VARCHAR(255) NOT NULL UNIQUE,
+  user_password VARCHAR(255) NOT NULL,
+  PRIMARY KEY (user_id)
 );
 
-INSERT INTO users (user_name, user_email, user_password)
-VALUES ('john', 'john@example.com', 'password');
+CREATE TABLE todos(
+  todo_id SERIAL,
+  user_id uuid,
+  description VARCHAR(255) NOT NULL,
+  PRIMARY KEY (todo_id),
+  FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
