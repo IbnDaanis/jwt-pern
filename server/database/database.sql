@@ -15,3 +15,8 @@ CREATE TABLE todos(
   PRIMARY KEY (todo_id),
   FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
+
+INSERT INTO users (user_name, user_email, user_password) values ('john', 'john@example.com', 'password');
+INSERT INTO users (user_name, user_email, user_password) values ('jimmy', 'jimmy@example.com', 'password');
+
+INSERT INTO todos (user_id, description ) values ('3cc88b1e-62af-455d-b02c-aef54c5467d9', 'First todo');
