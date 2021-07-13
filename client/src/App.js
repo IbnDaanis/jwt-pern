@@ -41,7 +41,7 @@ export const App = () => {
               !isAuthenticated ? (
                 <Login {...props} setIsAuthenticated={setIsAuthenticated} />
               ) : (
-                <Redirect to='/dashboard' />
+                <Redirect to='/' />
               )
             }
           />
@@ -52,13 +52,13 @@ export const App = () => {
               !isAuthenticated ? (
                 <Register {...props} setIsAuthenticated={setIsAuthenticated} />
               ) : (
-                <Redirect to='/dashboard' />
+                <Redirect to='/' />
               )
             }
           />
           <Route
             exact
-            path='/dashboard'
+            path='/'
             render={props =>
               isAuthenticated ? (
                 <Dashboard {...props} setIsAuthenticated={setIsAuthenticated} />
