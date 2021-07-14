@@ -5,6 +5,7 @@ import { InputTodo } from './TodoList/InputTodo'
 
 export const Dashboard = ({ setIsAuthenticated }) => {
   const [name, setName] = useState('')
+  const [todos, setTodos] = useState([])
 
   async function getName() {
     try {
@@ -15,8 +16,8 @@ export const Dashboard = ({ setIsAuthenticated }) => {
         }
       })
       const data = await response.json()
-      console.log(data)
-      setName(data.user_name)
+      setTodos(data)
+      setName(data[0].user_name)
     } catch (error) {
       console.error(error.message)
     }
@@ -32,7 +33,7 @@ export const Dashboard = ({ setIsAuthenticated }) => {
         <div className='d-flex mt-5 justify-content-around'>
           <h2>Welcome back {name}</h2>
           <button
-            className='btn btn-primary my-5'
+            className='btn btn-primary'
             onClick={() => {
               localStorage.removeItem('token')
               toast.success('Logged out')
@@ -42,7 +43,7 @@ export const Dashboard = ({ setIsAuthenticated }) => {
           </button>
         </div>
         <InputTodo />
-        <TodoList />
+        <TodoList todos={todos} setTodos={setTodos} />
       </div>
     </div>
   )

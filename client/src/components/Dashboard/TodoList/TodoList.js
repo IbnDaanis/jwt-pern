@@ -1,9 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { EditTodo } from './EditTodo'
 
-export const TodoList = () => {
-  const [todos, setTodos] = useState([])
-
+export const TodoList = ({ todos, setTodos }) => {
   const handleDelete = async id => {
     try {
       await fetch(`http://localhost:5000/todos/${id}`, {
@@ -25,21 +23,19 @@ export const TodoList = () => {
         </tr>
       </thead>
       <tbody>
-        {todos &&
-          todos.length &&
-          todos.map(todo => (
-            <tr key={todo.todo_id}>
-              <th scope='row'>{todo.description}</th>
-              <td>
-                <EditTodo todo={todo} />
-              </td>
-              <td>
-                <button className='btn btn-danger' onClick={() => handleDelete(todo.todo_id)}>
-                  Delete
-                </button>
-              </td>
-            </tr>
-          ))}
+        {todos.map(todo => (
+          <tr key={todo.todo_id}>
+            <th scope='row'>{todo.description}</th>
+            <td>
+              <EditTodo todo={todo} />
+            </td>
+            <td>
+              <button className='btn btn-danger' onClick={() => handleDelete(todo.todo_id)}>
+                Delete
+              </button>
+            </td>
+          </tr>
+        ))}
       </tbody>
     </table>
   )
