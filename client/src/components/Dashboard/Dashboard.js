@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { toast } from 'react-toastify'
 import { TodoList } from './TodoList/TodoList'
+import { InputTodo } from './TodoList/InputTodo'
 
 export const Dashboard = ({ setIsAuthenticated }) => {
   const [name, setName] = useState('')
@@ -27,18 +28,21 @@ export const Dashboard = ({ setIsAuthenticated }) => {
 
   return (
     <div className='container'>
-      <h1>Dashboard</h1>
       <div>
-        {name && <h2>Welcome back {name}</h2>}
-        <button
-          className='btn btn-primary my-5'
-          onClick={() => {
-            localStorage.removeItem('token')
-            toast.success('Logged out')
-            setIsAuthenticated(false)
-          }}>
-          Logout
-        </button>
+        <div className='d-flex mt-5 justify-content-around'>
+          <h2>Welcome back {name}</h2>
+          <button
+            className='btn btn-primary my-5'
+            onClick={() => {
+              localStorage.removeItem('token')
+              toast.success('Logged out')
+              setIsAuthenticated(false)
+            }}>
+            Logout
+          </button>
+        </div>
+
+        <InputTodo />
         <TodoList />
       </div>
     </div>

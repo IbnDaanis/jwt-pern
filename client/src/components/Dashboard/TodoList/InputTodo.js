@@ -6,12 +6,22 @@ export const InputTodo = () => {
   const handleSubmit = async event => {
     event.preventDefault()
     try {
+      const reqHeaders = new Headers()
+      reqHeaders.append('Content-Type', 'application/json')
+      reqHeaders.append('token', JSON.parse(localStorage.getItem('token')))
+
       const body = { description }
-      await fetch('http://localhost:5000/todos', {
+
+      const res = await fetch('http://localhost:5000/dashboard/todos', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: reqHeaders,
         body: JSON.stringify(body)
       })
+
+      const parsed = await res.json()
+
+      console.log(parsed)
+
       setDescription('')
       window.location = '/'
     } catch (error) {

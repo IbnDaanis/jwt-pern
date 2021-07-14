@@ -5,9 +5,9 @@ export const TodoList = () => {
   const [todos, setTodos] = useState([])
 
   const getTodos = async () => {
-    const response = await fetch('http://localhost:5000/todos')
+    const response = await fetch('http://localhost:5000/dashboard')
     const data = await response.json()
-
+    console.log(data)
     setTodos(data)
   }
 
@@ -36,19 +36,21 @@ export const TodoList = () => {
         </tr>
       </thead>
       <tbody>
-        {todos.map(todo => (
-          <tr key={todo.todo_id}>
-            <th scope='row'>{todo.description}</th>
-            <td>
-              <EditTodo todo={todo} />
-            </td>
-            <td>
-              <button className='btn btn-danger' onClick={() => handleDelete(todo.todo_id)}>
-                Delete
-              </button>
-            </td>
-          </tr>
-        ))}
+        {/* {todos &&
+          todos.length &&
+          todos.map(todo => (
+            <tr key={todo.todo_id}>
+              <th scope='row'>{todo.description}</th>
+              <td>
+                <EditTodo todo={todo} />
+              </td>
+              <td>
+                <button className='btn btn-danger' onClick={() => handleDelete(todo.todo_id)}>
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))} */}
       </tbody>
     </table>
   )
