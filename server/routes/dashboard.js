@@ -7,7 +7,10 @@ const router = Router()
 router.get('/', authorization, async (req, res) => {
   try {
     const user = (
-      await pool.query('SELECT * FROM users INNER JOIN todos ON users.user_id = todos.user_id')
+      await pool.query(
+        'SELECT * FROM users AS u LEFT JOIN todos as t ON u.user_id = t.user_id WHERE u.user_id = $1',
+        [req.user.id]
+      )
     ).rows[0]
     res.status(200).json(user)
   } catch (error) {
