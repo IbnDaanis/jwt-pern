@@ -8,7 +8,7 @@ router.get('/', authorization, async (req, res) => {
   try {
     const user = (
       await pool.query(
-        'SELECT * FROM users AS u LEFT JOIN todos as t ON u.user_id = t.user_id WHERE u.user_id = $1',
+        'SELECT u.user_name, t.todo_id, t.description FROM users AS u LEFT JOIN todos as t ON u.user_id = t.user_id WHERE u.user_id = $1',
         [req.user.id]
       )
     ).rows[0]
