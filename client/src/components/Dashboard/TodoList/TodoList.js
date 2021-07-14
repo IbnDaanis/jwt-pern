@@ -1,19 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { EditTodo } from './EditTodo'
 
 export const TodoList = () => {
   const [todos, setTodos] = useState([])
-
-  const getTodos = async () => {
-    const response = await fetch('http://localhost:5000/dashboard')
-    const data = await response.json()
-    console.log(data)
-    setTodos(data)
-  }
-
-  useEffect(() => {
-    getTodos()
-  }, [])
 
   const handleDelete = async id => {
     try {
@@ -36,7 +25,7 @@ export const TodoList = () => {
         </tr>
       </thead>
       <tbody>
-        {/* {todos &&
+        {todos &&
           todos.length &&
           todos.map(todo => (
             <tr key={todo.todo_id}>
@@ -50,7 +39,7 @@ export const TodoList = () => {
                 </button>
               </td>
             </tr>
-          ))} */}
+          ))}
       </tbody>
     </table>
   )

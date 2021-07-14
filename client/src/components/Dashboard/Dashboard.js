@@ -15,7 +15,7 @@ export const Dashboard = ({ setIsAuthenticated }) => {
         }
       })
       const data = await response.json()
-
+      console.log(data)
       setName(data.user_name)
     } catch (error) {
       console.error(error.message)
@@ -41,7 +41,6 @@ export const Dashboard = ({ setIsAuthenticated }) => {
             Logout
           </button>
         </div>
-
         <InputTodo />
         <TodoList />
       </div>
