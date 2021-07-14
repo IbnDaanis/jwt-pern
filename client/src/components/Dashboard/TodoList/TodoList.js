@@ -4,13 +4,21 @@ import { EditTodo } from './EditTodo'
 export const TodoList = ({ todos, setTodos }) => {
   const handleDelete = async id => {
     try {
-      await fetch(`http://localhost:5000/todos/${id}`, {
-        method: 'DELETE'
+      const reqHeaders = new Headers()
+      reqHeaders.append('token', JSON.parse(localStorage.getItem('token')))
+
+      await fetch(`http://localhost:5000/dashboard/todos/${id}`, {
+        method: 'DELETE',
+        headers: reqHeaders
       })
       setTodos(prev => prev.filter(todo => todo.todo_id !== id))
     } catch (error) {
       console.error(error.message)
     }
+  }
+
+  if (todos.length && !todos[0].todo_id) {
+    return null
   }
 
   return (

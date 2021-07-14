@@ -5,13 +5,21 @@ export const EditTodo = ({ todo }) => {
   const [editedDescription, setEditedDescription] = useState(description)
 
   const handleEditTodo = async id => {
+    const reqHeaders = new Headers()
+    reqHeaders.append('Content-Type', 'application/json')
+    reqHeaders.append('token', JSON.parse(localStorage.getItem('token')))
+
     const body = { description: editedDescription }
     try {
-      await fetch(`http://localhost:5000/todos/${id}`, {
+      const res = await fetch(`http://localhost:5000/dashboard/todos/${id}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: reqHeaders,
         body: JSON.stringify(body)
       })
+
+      const data = await res.json()
+
+      console.log(data)
 
       window.location = '/'
     } catch (error) {
