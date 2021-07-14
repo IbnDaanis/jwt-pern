@@ -19,4 +19,21 @@ router.get('/', authorization, async (req, res) => {
   }
 })
 
+router.post('/todos', authorization, async (req, res) => {
+  try {
+    const { description } = req.body
+    const newTodo = (
+      await pool.query('INSERT INTO todos (user_id, description) VALUES ($1, $2) RETURNING *', [
+        req.user.id,
+        description
+      ])
+    ).rows[0]
+
+    res.json(newTodo)
+  } catch (error) {
+    console.error(error.message)
+    res.json(error.message)
+  }
+})
+
 export default router
