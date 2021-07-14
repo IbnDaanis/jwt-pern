@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { Fragment, useState } from 'react'
 
 export const InputTodo = () => {
   const [description, setDescription] = useState('')
@@ -20,7 +20,7 @@ export const InputTodo = () => {
   }
 
   return (
-    <>
+    <Fragment>
       <h1 className='text-center my-5'>Input Todo</h1>
       <form className='d-flex' onSubmit={handleSubmit}>
         <input
@@ -34,6 +34,6 @@ export const InputTodo = () => {
           Add
         </button>
       </form>
-    </>
+    </Fragment>
   )
 }

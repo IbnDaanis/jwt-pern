@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, Fragment } from 'react'
 
 export const EditTodo = ({ todo }) => {
   const { todo_id, description } = todo
@@ -20,7 +20,7 @@ export const EditTodo = ({ todo }) => {
   }
 
   return (
-    <>
+    <Fragment>
       <button
         type='button'
         className='btn btn-warning'
@@ -60,6 +60,6 @@ export const EditTodo = ({ todo }) => {
           </div>
         </div>
       </div>
-    </>
+    </Fragment>
   )
 }

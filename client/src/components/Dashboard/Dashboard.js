@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { toast } from 'react-toastify'
+import { TodoList } from './TodoList/TodoList'
 
 export const Dashboard = ({ setIsAuthenticated }) => {
   const [name, setName] = useState('')
@@ -38,6 +39,7 @@ export const Dashboard = ({ setIsAuthenticated }) => {
           }}>
           Logout
         </button>
+        <TodoList />
       </div>
     </div>
   )

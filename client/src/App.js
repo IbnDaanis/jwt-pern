@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import { Dashboard } from './components/Dashboard/Dashboard'
 import { Login } from './components/Login'
 import { Register } from './components/Register'
+import { Landing } from './components/Landing'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -36,12 +37,19 @@ export const App = () => {
         <Switch>
           <Route
             exact
+            path='/'
+            render={props =>
+              !isAuthenticated ? <Landing {...props} /> : <Redirect to='/dashboard' />
+            }
+          />
+          <Route
+            exact
             path='/login'
             render={props =>
               !isAuthenticated ? (
                 <Login {...props} setIsAuthenticated={setIsAuthenticated} />
               ) : (
-                <Redirect to='/' />
+                <Redirect to='/dashboard' />
               )
             }
           />
@@ -52,13 +60,13 @@ export const App = () => {
               !isAuthenticated ? (
                 <Register {...props} setIsAuthenticated={setIsAuthenticated} />
               ) : (
-                <Redirect to='/' />
+                <Redirect to='/dashboard' />
               )
             }
           />
           <Route
             exact
-            path='/'
+            path='/dashboard'
             render={props =>
               isAuthenticated ? (
                 <Dashboard {...props} setIsAuthenticated={setIsAuthenticated} />
